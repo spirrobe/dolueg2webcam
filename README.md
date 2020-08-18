@@ -2,6 +2,8 @@
 This is the relevant code for the MCR webcam at Klingelbergstrasse 27 in Basel.
 The files here have been adjusted to be generic enough for use but may require other adjustments
 
+![Example shot of the webcam](https://raw.githubusercontent.com/spirrobe/dolueg2webcam/master/current.jpg "View of the webcam in Basel")
+
 # overview of datapipeline
 webcam takes pictures -> uploads to FTP and a webdav (instant picture)
 second computer downloads images from FTP, makes a timelapse of the picture and uploads it to a webdav as well
