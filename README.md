@@ -1,5 +1,6 @@
 # dolueg2webcam
 This is the relevant code for the MCR webcam at Klingelbergstrasse 27 in Basel.
+This can be linked to dolueg2, i.e. to [dolueg2page](https://github.com/spirrobe/dolueg2page/ "dolueg2page") and [dolueg2page](https://github.com/spirrobe/dolueg2figures/ "dolueg2figures")
 The files here have been adjusted to be generic enough for use but may require other adjustments
 
 ![Example shot of the webcam](https://raw.githubusercontent.com/spirrobe/dolueg2webcam/master/current.jpg "View of the webcam in Basel")
