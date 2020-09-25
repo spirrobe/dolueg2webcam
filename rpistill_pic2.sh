@@ -68,13 +68,11 @@ TIME="select date_format(convert_tz(timestamp(t1.date,t1.time),'+01:00','+00:00'
 WHAT="round(t1.value,1),round(t2.value,1),round(t3.value,0),round(t4.value,1) " 
 
 # TABLES WE WANT
-FROMTABLE="FROM messnetzdb.bklidta7 as t1 "
-# ADJUST FOR RHINE TEMPERATURE�WHOSE TIMEZONE IS UTC+2
-FROMTABLE+="JOIN messnetzdb.B2091WT0 as t2 ON t1.date=t2.date AND t1.time=(t2.time + INTERVAL 60 MINUTE) "
-#	FROMTABLE+="JOIN messnetzdb.B2613WT0 as t2 ON t1.date=t2.date AND t1.time=(t2.time + INTERVAL 60 MINUTE) "
-#	FROMTABLE+="JOIN messnetzdb.B2613WT0 as t2 ON t1.date=t2.date AND t1.time=t2.time "
-FROMTABLE+="JOIN messnetzdb.bklirha7 as t3 ON t1.date=t3.date AND t1.time=t3.time "
-FROMTABLE+="JOIN messnetzdb.bklisda1 as t4 ON t1.date=t4.date AND t1.time=t4.time "
+FROMTABLE="FROM YOURDB.YOURTABLE as t1 "
+# ADJUST FOR YOURTABLEOTHERTZ WHOSE TIMEZONE IS UTC+2 compared to the rest
+FROMTABLE+="JOIN YOURDB.YOURTABLEOTHERTZ as t2 ON t1.date=t2.date AND t1.time=(t2.time + INTERVAL 60 MINUTE) "
+FROMTABLE+="JOIN YOURDB.YOURTABLE as t3 ON t1.date=t3.date AND t1.time=t3.time "
+FROMTABLE+="JOIN YOURDB.YOURTABLE as t4 ON t1.date=t4.date AND t1.time=t4.time "
 
 # CONDITION
 WHERE="where timestamp(t1.date,t1.time) >= ('$(date +'%Y-%m-%d %H:%M:%S')' - interval $minoffset minute) "
@@ -167,10 +165,10 @@ if [ ${#sqlarr[@]} -ne 0 ]; then
 	gm convert $TMPDIR/shot$nd.jpg \
 	  -gravity Northeast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[0]} 'Values UTC'" \
 	  -gravity Northeast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[1]}  \"${sqlarr[1]} ${sqlarr[0]}\"" \
-	  -gravity Northeast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[2]}  \"${sqlarr[2]} °C Temp.\"" \
-	  -gravity NorthEast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[3]}  \"${sqlarr[3]} °C Rhine \"" \
-	  -gravity NorthEast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[4]}  \"${sqlarr[4]} % Rel. Hum.\"" \
-	  -gravity NorthEast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[5]} \"${sqlarr[5]} W/m² SRad.\"" \
+	  -gravity Northeast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[2]}  \"${sqlarr[2]} YOURUNIT1 \"" \
+	  -gravity NorthEast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[3]}  \"${sqlarr[3]} YOURUNIT2 \"" \
+	  -gravity NorthEast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[4]}  \"${sqlarr[4]} YOURUNIT3 \"" \
+	  -gravity NorthEast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[5]} \"${sqlarr[5]} YOURUNIT4 \"" \
 	  $TMPDIR/shot$nd.jpg
 else
 
@@ -178,10 +176,10 @@ else
 	gm convert $TMPDIR/shot$nd.jpg \
 	  -gravity Northeast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[0]} 'Values UTC'" \
 	  -gravity Northeast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[1]}  \"  $nd3\"" \
-	  -gravity Northeast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[2]}  \"  NA °C Temp.\"" \
-	  -gravity NorthEast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[3]}  \"  NA °C Rhine \"" \
-	  -gravity NorthEast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[4]}  \"  NA % Rel. Hum.\"" \
-	  -gravity NorthEast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[5]} \"  NA W/m² SRad.\"" \
+	  -gravity Northeast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[2]}  \"  NA YOURUNIT1 \"" \
+	  -gravity NorthEast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[3]}  \"  NA YOURUNIT2 \"" \
+	  -gravity NorthEast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[4]}  \"  NA YOURUNIT3 \"" \
+	  -gravity NorthEast -pointsize $textsize -fill '#000000' -draw "text $toptextdist,${lp[5]} \"  NA YOURUNIT4 \"" \
 	  $TMPDIR/shot$nd.jpg
 
 fi;
