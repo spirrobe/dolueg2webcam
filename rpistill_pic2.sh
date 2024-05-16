@@ -3,6 +3,7 @@
 #GENERAL DIRECTORY STRUCTURE
 TMPDIR=/home/pi/webcam
 WEBDAV=ENTERYOURWEBDAV
+SQLSERVER=ENTERYOURSQLSERVER  # requires that credentials are setup in the shell env
 
 # CREDENTIALS TO STORE THINGS LATER
 FTPUSER=ENTERYOURUSERHERE
@@ -87,7 +88,7 @@ QUERY="$TIME$WHAT$FROMTABLE$WHERE$ORDER"
 #echo $QUERY
 
 # RUN QUERY AND GET RESULT
-sqlout=$(mysql -ss -h met-server3 -e "$QUERY")
+sqlout=$(mysql -ss -h "$SQLSERVER" -e "$QUERY")
 
 #MAKE AN ARRAY OUT OF IT
 sqlarr=($sqlout)
